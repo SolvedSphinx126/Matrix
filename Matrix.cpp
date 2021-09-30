@@ -10,13 +10,19 @@ Matrix::Matrix() {
 
 Matrix::Matrix(vector<vector<double>> matrix) {
     this->matrix = matrix;
+    this->cols = matrix.size();
+    this->rows = matrix[0].size();
 }
 
 double Matrix::det() {
+    for(int col = 0; col < this->matrix.size(); col++)
+    {
 
+    }
+    return 0;
 }
 
-vector<vector<double>> * Matrix::minor(int row, int col) {
+vector<vector<double>> Matrix::minor(int row, int col) {
     vector<vector<double>> minor = this->matrix; // copy original matrix
     row--;
     col--;
@@ -25,26 +31,23 @@ vector<vector<double>> * Matrix::minor(int row, int col) {
         minor[i].erase(minor[i].begin()+col);
     }
     minor.erase(minor.begin()+row);
-    return &minor;
+    return minor;
 }
 
 string Matrix::toString() {
     stringstream ans;
     double temp;
     ans << "Matrix:" << endl;
-    for(int i = 0; i < this->matrix.size(); i++)
+    for(int row = 0; row < this->matrix.size(); row++)
     {
-        for(int j = 0; j < this->matrix[i].size(); j++)
+        for(int col = 0; col < this->matrix[row].size(); col++)
         {
-            ans << this->matrix[i][j] << ' ';
+            ans << this->matrix[row][col] << ' ';
         }
         ans << endl;
     }
-    return ans.str();
-}
 
-double Matrix::get(int row, int col) {
-    return 0;
+    return ans.str();
 }
 
 void Matrix::query() {
@@ -71,6 +74,24 @@ void Matrix::query() {
         vec.clear();
     }
 }
+
+void Matrix::scaleRow(int row, double scalar) {
+    row--;
+    for(int col = 0; col < this->cols; col++)
+    {
+        this->matrix[row][col] *= scalar;
+    }
+}
+
+void Matrix::scaleCol(int col, double scalar) {
+    col--;
+    for(int row = 0; row < this->rows; row++)
+    {
+        this->matrix[row][col] *= scalar;
+    }
+}
+
+
 
 
 

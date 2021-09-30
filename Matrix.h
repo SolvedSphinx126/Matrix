@@ -22,10 +22,11 @@ public:
     Matrix();
     Matrix(vector<vector<double>> matrix);
     double det();
-    double get(int row, int col);
     void query();
-    vector<vector<double>> * minor(int row, int col);
+    vector<vector<double>> minor(int row, int col);
     string toString();
+    void scaleRow(int row, double scalar);
+    void scaleCol(int col, double scalar);
 };
 
 
