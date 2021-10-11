@@ -15,9 +15,22 @@ Matrix::Matrix(vector<vector<double>> matrix) {
 }
 
 double Matrix::det() {
-    for(int col = 0; col < this->matrix.size(); col++)
+    if(this->cols != this->rows)
     {
+        return NULL;
+    }
+    else if(this->cols == 2 && this->rows == 2)
+    {
+        return this->matrix[0][0]*this->matrix[1][1]-this->matrix[0][1]*this->matrix[1][0];
+    }
+    else if(this->rows == 1 && this->cols == 1)
+    {
+        return this->matrix[0][0];
+    }
+    else {
+        for (int col = 0; col < this->matrix.size(); col++) {
 
+        }
     }
     return 0;
 }
@@ -31,6 +44,8 @@ vector<vector<double>> Matrix::minor(int row, int col) {
         minor[i].erase(minor[i].begin()+col);
     }
     minor.erase(minor.begin()+row);
+    this->cols--;
+    this->rows--;
     return minor;
 }
 
@@ -90,6 +105,8 @@ void Matrix::scaleCol(int col, double scalar) {
         this->matrix[row][col] *= scalar;
     }
 }
+
+
 
 
 
